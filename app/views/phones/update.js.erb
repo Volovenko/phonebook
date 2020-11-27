@@ -1,0 +1,5 @@
+$("#myupdatephone_<%= @phone.id %>").modal('hide');
+$("#phone_<%= @phone.id %>").fadeOut(500, function(){
+  $(this).remove();
+  $("#container_phones").prepend('<%= j render @phone %>');	
+});

@@ -1,0 +1,5 @@
+$("#mynewphone").modal('hide');
+$(".phone_name").val('');
+$(".phone_number").val('');
+$("#container_phones").prepend('<%= j render @phone %>');
+$("#phone_<%= @phone.id %>").hide().fadeIn(500);

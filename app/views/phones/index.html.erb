@@ -1,0 +1,58 @@
+<div class="container">
+
+    <div class="row">
+      <div class="text-center new-phone">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#mynewphone">
+            New Phone
+          </button>
+      </div>
+    </div>
+    <hr>
+
+    <div class="row" id="container_phones">
+        <%= render @phones %>
+    </div>
+
+      <%= form_for Phone.new, remote: true do |f| %>
+        <div class="modal fade" id="mynewphone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+
+            <div class="modal-body">
+              <div class="field">
+                <%= f.label :name %><br>
+                <%= f.text_area :name, class: "form-control phone_name" %>
+              </div>
+              <div class="field">
+                <%= f.label :number %><br>
+                <%= f.text_area :number, class: "form-control phone_number" %>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewphoneclose">Close</button>
+              <%= submit_tag "Create", class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+        </div>
+      <% end %>
+        <hr>
+  <br>
+  <%= link_to "Download phonebook", phones_path(format: "csv"), class: "btn btn-success" %>
+  <br>
+  <br>
+
+  <div><h4>Import data!</h4>
+    <%= form_tag import_phones_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import from file" %>
+    <% end %>
+  </div>
+</div>
+<br>
